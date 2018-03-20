@@ -23,8 +23,8 @@ class CashFlow(object):
         cash_flows = ts.get_cash_flow(code)
         self.cash_flows = {year: utils.convert_to_float(cash_flows[year]) for year in years}
 
-    def net_cash_flow_operating(self):
-        return self.net_cash_flow_operating
+    def net_cash_flow_operating(self, year):
+        return self.cash_flows[year][cash_flow_index['net_cash_flow_operating']]
 
-    def cash_dividend(self):
-        return self.cash_dividend
+    def cash_dividend(self, year):
+        return self.cash_flows[year][cash_flow_index['cash_dividend']]

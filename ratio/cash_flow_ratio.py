@@ -13,7 +13,7 @@ class CashFlowRatio(object):
 
     def _generate_analysis_data(self, years):
 
-        self.cash_flow_ratio = [self.cash_flow.net_cash_flow_operating(year) /
+        self.cash_flow_ratio = [self.cash_flow.net_cash_flow_operating() /
                                 self.balance_sheet.total_current_liabilities(year)
                                 for year in years]
         self.cash_flow_adequacy_ratio = []

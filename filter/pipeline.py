@@ -18,8 +18,6 @@ class Pipeline(object):
         self.profit = profit_statement.ProfitStatement(code, years)
 
         self.asset_liability_ratio = asset_liability_ratio.AssetLiabilityRatio(self.balance_sheet,
-                                                                               self.cash_flow,
-                                                                               self.profit,
                                                                                years)
         self.cash_flow_ratio = cash_flow_ratio.CashFlowRatio(self.balance_sheet,
                                                              self.cash_flow,
@@ -53,7 +51,7 @@ class Pipeline(object):
         return True
 
     def _filter_by_cash_flow(self):
-        for net_cash in self.cash_flow.net_cash_flow_operating():
+        for net_cash in self.cash_flow.net_cash_flow_operating:
             if net_cash < 0:
                 return False
         return True
