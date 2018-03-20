@@ -2,10 +2,8 @@
 
 class AssetLiabilityRatio(object):
 
-    def __init__(self, balance_sheet, cash_flow, profit_statement, years):
+    def __init__(self, balance_sheet, years):
         self.balance_sheet = balance_sheet
-        self.cash_flow = cash_flow
-        self.profit = profit_statement
 
         self.cash_to_total_asset_ratio = []
         self.ar_to_total_asset_ratio = []
@@ -22,8 +20,6 @@ class AssetLiabilityRatio(object):
 
     def _generate_analysis_data(self, years):
         for current_year, last_year in zip(years, years[1:] + [None]):
-            income = self.profit.total_operating_income(current_year)
-            cost = self.profit.operating_costs(current_year)
             total_assets = self.balance_sheet.total_assets(current_year)
 
             cash_equity = self.balance_sheet.cash(current_year) + \
@@ -34,9 +30,27 @@ class AssetLiabilityRatio(object):
                        self.balance_sheet.accounts_receivable(current_year)
             self.ar_to_total_asset_ratio.append(accounts / total_assets)
 
+            self.inventory_to_total_asset_ratio.append(self.balance_sheet.inventory(current_year) /
+                                                       total_assets)
+            self.current_asset_to_total_asset_ratio.append(self.balance_sheet.total_current_assets(current_year) /
+                                                           total_assets)
+            self.fixed_asset_to_total_asset_ratio.append(self.balance_sheet.fixed_assets(current_year) /
+                                                         total_assets)
+
             payables = self.balance_sheet.bill_payables(current_year) + \
                        self.balance_sheet.payables(current_year)
             self.payables_to_total_asset_ratio.append(payables / total_assets)
+
+            self.current_liability_to_total_asset_ratio.append(
+                self.balance_sheet.total_current_liabilities(current_year) /
+                total_assets)
+
+            self.fixed_liability_to_total_asset_ratio.append(
+                self.balance_sheet.total_fixed_liabilities(current_year) /
+                total_assets)
+
+            self.equity_to_total_asset_ratio.append(self.balance_sheet.equity(current_year) /
+                                                    total_assets)
 
     def cash_to_total_asset_ratio(self):
         return self.cash_to_total_asset_ratio

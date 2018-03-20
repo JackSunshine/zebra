@@ -6,6 +6,7 @@ profit_statements_index = {
     'total_operating_income': 1,
     'total_operating_costs': 3,
     'operating_costs': 4,
+    'operating_profit': 14,
     'net_profit': 20,
     'basic_per_share': 24
 
@@ -31,6 +32,9 @@ class ProfitStatement(object):
 
     def operating_costs(self, year):
         return self.profit_statements[year][profit_statements_index['operating_costs']]
+
+    def operating_profit(self, year):
+        return self.profit_statements[year][profit_statements_index['operating_profit']]
 
     def net_profit(self, year):
         return self.profit_statements[year][profit_statements_index['net_profit']]

@@ -41,8 +41,9 @@ class Stocks(object):
         for code, name in self.stocks_not_st.items():
             print("This is the %dth stock, code is %s" % (self.counter, code))
             self._get_actual_years(code)
-            if pipeline.PipeLine(code, self.actual_years).filter():
+            if pipeline.Pipeline(code, self.actual_years).filter():
                 result[code] = name
-                print("The valuable stock is %s, %s"%(code, name))
+                print("The valuable stock is %s, %s" % (code, name))
+
             self.counter = self.counter + 1
         print(result)

@@ -10,6 +10,9 @@ balance_sheet_index = {
     'prepayments': 7,
     'inventory': 12,
     'total_current_assets': 18,
+    'fixed_assets': 26,
+    'construction_in_progress': 27,
+    'engineer_material': 28,
     'total_fixed_assets': 39,
     'total_assets': 40,
     'bill_payables': 44,
@@ -49,6 +52,15 @@ class BalanceSheet(object):
 
     def total_current_assets(self, year):
         return self.balance_sheets[year][balance_sheet_index['total_current_assets']]
+
+    def fixed_assets(self, year):
+        return self.balance_sheets[year][balance_sheet_index['fixed_assets']]
+
+    def construction_in_progress(self, year):
+        return self.balance_sheets[year][balance_sheet_index['construction_in_progress']]
+
+    def engineer_material(self, year):
+        return self.balance_sheets[year][balance_sheet_index['engineer_material']]
 
     def total_fixed_assets(self, year):
         return self.balance_sheets[year][balance_sheet_index['total_fixed_assets']]
