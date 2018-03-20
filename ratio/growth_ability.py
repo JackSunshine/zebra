@@ -6,9 +6,9 @@ class GrowthAbility(object):
         self.balance_sheet = balance_sheet
         self.cash_flow = cash_flow
 
-        self.increase_rate_of_business_revenue = []
-        self.net_profit_growth_rate = []
-        self.net_capital_growth_rate = []
+        self._increase_rate_of_business_revenue = []
+        self._net_profit_growth_rate = []
+        self._net_capital_growth_rate = []
 
         self._generate_analysis_data(years)
 
@@ -16,10 +16,10 @@ class GrowthAbility(object):
         pass
 
     def increase_rate_of_business_revenue(self):
-        return self.increase_rate_of_business_revenue
+        return self._increase_rate_of_business_revenue
 
     def net_profit_growth_rate(self):
-        return self.net_profit_growth_rate
+        return self._net_profit_growth_rate
 
     def net_capital_growth_rate(self):
-        return self.net_capital_growth_rate
+        return self._net_capital_growth_rate
