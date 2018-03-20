@@ -13,10 +13,10 @@ class CashFlow(object):
     def __init__(self, code, years):
         self.cash_flows = None
         self._make_cash_flows(code, years)
-        self.net_cash_flow_operating = [self.cash_flows[year][cash_flow_index['net_cash_flow_operating']]
-                                        for year in years]
-        self.cash_dividend = [self.cash_flows[year][cash_flow_index['cash_dividend']]
-                              for year in years]
+        self._net_cash_flow_operating = [self.cash_flows[year][cash_flow_index['net_cash_flow_operating']]
+                                         for year in years]
+        self._cash_dividend = [self.cash_flows[year][cash_flow_index['cash_dividend']]
+                               for year in years]
 
     @utils.retry_after_sleep
     def _make_cash_flows(self, code, years):
@@ -28,3 +28,9 @@ class CashFlow(object):
 
     def cash_dividend(self, year):
         return self.cash_flows[year][cash_flow_index['cash_dividend']]
+
+    def all_net_cash_flow_operating(self):
+        return self._net_cash_flow_operating
+
+    def all_cash_dividend(self):
+        return self._cash_dividend

@@ -51,7 +51,7 @@ class Pipeline(object):
         return True
 
     def _filter_by_cash_flow(self):
-        for net_cash in self.cash_flow.net_cash_flow_operating:
+        for net_cash in self.cash_flow.all_net_cash_flow_operating():
             if net_cash < 0:
                 return False
         return True
