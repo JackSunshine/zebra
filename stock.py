@@ -62,7 +62,7 @@ class Stocks(object):
                       % (code, name, self.time_to_market.get(code, ''),
                          self.outstanding_to_totals.get(code, ''),
                          ev_price,
-                         ev.latest_peg(self.pes.get(code, asset_liability_ratio))))
+                         ev.latest_peg(self.pes.get(code), asset_liability_ratio)))
 
             self.counter = self.counter + 1
         print(result)
