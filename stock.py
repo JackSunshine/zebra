@@ -50,10 +50,10 @@ class Stocks(object):
         for code, name in self.stocks_not_st.items():
             print("This is the %dth stock, code is %s" % (self.counter, code))
             self._get_actual_years(code)
-            pl = pipeline.Pipeline(code, self.actual_years, self.totals['code'])
+            pl = pipeline.Pipeline(code, self.actual_years)
             if pl.filter():
                 result[code] = name
-                ev_price = ev.evaluation(self.pes.get(code), self.totals['code'], pl.get_abilities())
+                ev_price = ev.evaluation(self.pes.get(code), self.totals.get(code), pl.get_abilities())
                 print("The valuable stock is %s, %s, time to market is %s,"
                       "outstanding/totals is %s, evaluated price is %s"
                       % (code, name, self.time_to_market.get(code, ''),

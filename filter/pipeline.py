@@ -12,8 +12,7 @@ import ratio.profit_ability as profit_ability
 
 class Pipeline(object):
 
-    def __init__(self, code, years, total):
-        self.total = total
+    def __init__(self, code, years):
         self.years = years
         self.balance_sheet = balance_sheet.BalanceSheet(code, years)
         self.cash_flow = cash_flow.CashFlow(code, years)
