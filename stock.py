@@ -35,6 +35,7 @@ class Stocks(object):
 
     @utils.retry_after_sleep
     def _get_actual_years(self, code):
+        self.actual_years = []
         time.sleep(2)
         cash_flows = ts.get_cash_flow(code)
         time.sleep(2)
