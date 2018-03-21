@@ -40,6 +40,7 @@ class Pipeline(object):
                                                            years)
 
     def _filter_by_esp(self):
+        print('esp is %s' % self.profit_ability.basic_per_share())
         for ratio in self.profit_ability.basic_per_share():
             if ratio < 0.6:
                 return False
@@ -70,6 +71,7 @@ class Pipeline(object):
         return True
 
     def _filter_by_cash_to_assets_ratio(self):
+        print('cash is %s' % self.asset_liability_ratio.cash_to_total_asset_ratio())
         for ratio in self.asset_liability_ratio.cash_to_total_asset_ratio():
             if ratio < 0.2:
                 return False

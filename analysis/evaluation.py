@@ -17,6 +17,6 @@ def evaluation(pe, total,
 
 def latest_peg(pe, growth_ability):
 
-    return pe / growth_ability.net_profit_growth_rate()[0]
+    return pe / (growth_ability.net_profit_growth_rate()[0] * 100)
 
 
