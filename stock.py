@@ -60,7 +60,9 @@ class Stocks(object):
                 print("The valuable stock is %s, %s, time to market is %s,"
                       "outstanding/totals is %s, evaluated price is %s, peg is %s"
                       % (code, name, self.time_to_market.get(code, ''),
-                         self.outstanding_to_totals.get(code, ''), ev_price, ev.latest_peg()))
+                         self.outstanding_to_totals.get(code, ''),
+                         ev_price,
+                         ev.latest_peg(self.pes.get(code, asset_liability_ratio))))
 
             self.counter = self.counter + 1
         print(result)
