@@ -1,6 +1,7 @@
 import utils
 import statements.balance_sheet as bsheet
 
+
 class AssetLiabilityRatio(object):
 
     def __init__(self, balance_sheet, years):
