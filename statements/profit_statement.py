@@ -17,12 +17,13 @@ class ProfitStatement(object):
 
     def __init__(self, code, years):
         self.profit_statements = None
+        self.profits = None
         self._make_profit_statements(code, years)
 
     @utils.retry_after_sleep
     def _make_profit_statements(self, code, years):
-        profits = ts.get_profit_statement(code)
-        self.profit_statements = {year: utils.convert_to_float(profits[year]) for year in years}
+        self.profits = ts.get_profit_statement(code)
+        self.profit_statements = {year: utils.convert_to_float(self.profits[year]) for year in years}
 
     def total_operating_income(self, year):
         return self.profit_statements[year][profit_statements_index['total_operating_income']]

@@ -53,13 +53,14 @@ class Stocks(object):
             pl = pipeline.Pipeline(code, self.actual_years)
             if pl.filter():
                 result[code] = name
-                asset_liability_ratio,operational_capacity, profit_ability = pl.get_abilities()
+                asset_liability_ratio, growth_ability, operational_capacity, profit_ability = \
+                    pl.get_abilities()
                 ev_price = ev.evaluation(self.pes.get(code), self.totals.get(code),
                                          asset_liability_ratio, operational_capacity, profit_ability)
                 print("The valuable stock is %s, %s, time to market is %s,"
-                      "outstanding/totals is %s, evaluated price is %s"
+                      "outstanding/totals is %s, evaluated price is %s, peg is %s"
                       % (code, name, self.time_to_market.get(code, ''),
-                         self.outstanding_to_totals.get(code, ''), ev_price))
+                         self.outstanding_to_totals.get(code, ''), ev_price, ev.latest_peg()))
 
             self.counter = self.counter + 1
         print(result)

@@ -28,8 +28,7 @@ class Pipeline(object):
                                                                        years)
         self.financial_structure = financial_structure.FinancialStructure(self.balance_sheet,
                                                                           years)
-        self.growth_ability = growth_ability.GrowthAbility(self.balance_sheet,
-                                                           self.cash_flow,
+        self.growth_ability = growth_ability.GrowthAbility(self.profit,
                                                            years)
         self.operational_capacity = operational_capacity.OperationalCapacity(self.balance_sheet,
                                                                              self.cash_flow,
@@ -77,7 +76,7 @@ class Pipeline(object):
         return True
 
     def get_abilities(self):
-        return self.asset_liability_ratio, self.operational_capacity, self.profit_ability
+        return self.asset_liability_ratio, self.growth_ability, self.operational_capacity, self.profit_ability
 
     def filter(self):
         if not self._filter_by_cash_flow():
