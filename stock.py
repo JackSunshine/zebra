@@ -39,10 +39,7 @@ class Stocks(object):
         time.sleep(2)
         cash_flows = ts.get_cash_flow(code)
         time.sleep(2)
-        if (cash_flows.shape[1] - 1) // 4 >= 5:
-            self.actual_years = self.years[:]
-        else:
-            self.actual_years = self.years[:(cash_flows.shape[1] - 1) // 4]
+        self.actual_years = [year for year in self.years if year in cash_flows.columns]
 
     def start_washing(self):
         self._get_all_stocks()
