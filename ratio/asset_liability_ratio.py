@@ -1,4 +1,5 @@
 import utils
+import statements.balance_sheet as bsheet
 
 class AssetLiabilityRatio(object):
 
@@ -86,6 +87,6 @@ class AssetLiabilityRatio(object):
 
     def latest_equity(self):
         bs = utils.convert_to_float(self.balance_sheet.balances.iloc[:, 1])
-        return bs[self.balance_sheet.balance_sheet_index['equity']]
+        return bs[bsheet.balance_sheet_index['equity']]
 
 
