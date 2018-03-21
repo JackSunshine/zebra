@@ -25,8 +25,8 @@ class AssetLiabilityRatio(object):
         for current_year, last_year in zip(years, years[1:] + [None]):
             total_assets = self.balance_sheet.total_assets(current_year)
 
-            cash_equity = self.balance_sheet.cash(current_year) + \
-                          self.balance_sheet.prepayments(current_year)
+            cash_equity = self.balance_sheet.cash(current_year)
+                          #self.balance_sheet.prepayments(current_year)
             self._cash_to_total_asset_ratio.append(cash_equity / total_assets)
 
             accounts = self.balance_sheet.bill_receivable(current_year) + \
