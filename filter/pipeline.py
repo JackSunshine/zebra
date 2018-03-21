@@ -77,7 +77,7 @@ class Pipeline(object):
         return True
 
     def get_abilities(self):
-        return self.balance_sheet, self.asset_liability_ratio, self.operational_capacity, self.profit_ability
+        return self.asset_liability_ratio, self.operational_capacity, self.profit_ability
 
     def filter(self):
         if not self._filter_by_cash_flow():
