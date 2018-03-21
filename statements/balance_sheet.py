@@ -28,12 +28,13 @@ class BalanceSheet(object):
 
     def __init__(self, code, years):
         self.balance_sheets = None
+        self.balances = None
         self._make_balance_sheets(code, years)
 
     @utils.retry_after_sleep
     def _make_balance_sheets(self, code, years):
-        balances = ts.get_balance_sheet(code)
-        self.balance_sheets = {year: utils.convert_to_float(balances[year]) for year in years}
+        self.balances = ts.get_balance_sheet(code)
+        self.balance_sheets = {year: utils.convert_to_float(self.balances[year]) for year in years}
 
     def cash(self, year):
         return self.balance_sheets[year][balance_sheet_index['cash']]

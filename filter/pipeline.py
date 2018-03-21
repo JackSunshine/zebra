@@ -12,7 +12,9 @@ import ratio.profit_ability as profit_ability
 
 class Pipeline(object):
 
-    def __init__(self, code, years):
+    def __init__(self, code, years, total):
+        self.total = total
+        self.years = years
         self.balance_sheet = balance_sheet.BalanceSheet(code, years)
         self.cash_flow = cash_flow.CashFlow(code, years)
         self.profit = profit_statement.ProfitStatement(code, years)
@@ -74,6 +76,9 @@ class Pipeline(object):
             if ratio < 0.2:
                 return False
         return True
+
+    def get_abilities(self):
+        return self.balance_sheet, self.asset_liability_ratio, self.operational_capacity, self.profit_ability
 
     def filter(self):
         if not self._filter_by_cash_flow():

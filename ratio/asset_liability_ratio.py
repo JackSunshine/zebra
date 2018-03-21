@@ -1,4 +1,4 @@
-
+import utils
 
 class AssetLiabilityRatio(object):
 
@@ -15,6 +15,7 @@ class AssetLiabilityRatio(object):
         self._current_liability_to_total_asset_ratio = []
         self._fixed_liability_to_total_asset_ratio = []
         self._equity_to_total_asset_ratio = []
+        self._equity_multiplier = []
 
         self._generate_analysis_data(years)
 
@@ -31,11 +32,10 @@ class AssetLiabilityRatio(object):
             self._ar_to_total_asset_ratio.append(accounts / total_assets)
 
             self._inventory_to_total_asset_ratio.append(self.balance_sheet.inventory(current_year) /
-                                                        total_assets)
+                                                       total_assets)
             self._current_asset_to_total_asset_ratio.append(self.balance_sheet.total_current_assets(current_year) /
-                                                            total_assets)
-            self._fixed_asset_to_total_asset_ratio.append(self.balance_sheet.fixed_assets(current_year) /
-                                                          total_assets)
+                                                           total_assets)
+            self._fixed_asset_to_total_asset_ratio.append(self.balance_sheet.fixed_assets(current_year) /total_assets)
 
             payables = self.balance_sheet.bill_payables(current_year) + \
                        self.balance_sheet.payables(current_year)
@@ -51,6 +51,8 @@ class AssetLiabilityRatio(object):
 
             self._equity_to_total_asset_ratio.append(self.balance_sheet.equity(current_year) /
                                                      total_assets)
+            self._equity_multiplier.append(self.balance_sheet.total_assets(current_year) /
+                                           self.balance_sheet.equity(current_year))
 
     def cash_to_total_asset_ratio(self):
         return self._cash_to_total_asset_ratio
@@ -78,5 +80,12 @@ class AssetLiabilityRatio(object):
 
     def equity_to_total_asset_ratio(self):
         return self._equity_to_total_asset_ratio
+
+    def equity_multiplier(self):
+        return self._equity_multiplier
+
+    def latest_equity(self):
+        bs = utils.convert_to_float(self.balance_sheet.balances.iloc[:, 1])
+        return bs[self.balance_sheet.balance_sheet_index['equity']]
 
 
