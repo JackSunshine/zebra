@@ -4,6 +4,7 @@ import utils
 import time
 import filter.pipeline as pipeline
 import analysis.evaluation as ev
+import itertools
 
 
 class Stocks(object):
@@ -45,7 +46,8 @@ class Stocks(object):
         self._get_all_stocks()
         self._remove_st_stocks()
         result = {}
-        for code, name in self.stocks_not_st.items():
+        stocks = itertools.islice(self.stocks_not_st.items(), self.counter)
+        for code, name in stocks:
             print("This is the %dth stock, code is %s" % (self.counter, code))
             self._get_actual_years(code)
             pl = pipeline.Pipeline(code, self.actual_years)
@@ -61,6 +63,5 @@ class Stocks(object):
                          self.outstanding_to_totals.get(code, ''),
                          ev_price,
                          ev.latest_peg(self.pes.get(code), growth_ability)))
-
             self.counter = self.counter + 1
         print(result)
